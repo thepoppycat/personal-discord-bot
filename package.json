@@ -1,0 +1,16 @@
+{
+  "name": "bbcsbot",
+  "version": "1.0.0",
+  "description": "A BBCS bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Isaac Chen, Chong Tze Zhao ",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.1.1",
+    "dotenv": "^8.2.0"
+  }
+}
