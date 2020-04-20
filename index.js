@@ -6,33 +6,21 @@ dotenv.config({path: path.join(__dirname, '../.env')})
 
 client.on('ready', () => {
     // Set bot status to: "Watching for a &help in chat"
-    client.user.setActivity("for a &help in chat", {type: "WATCHING"})
+    client.user.setActivity("for a <SECRET> in chat", {type: "WATCHING"})
 	
 })
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 client.on('message', (receivedMessage) => {
 	if (receivedMessage.author == client.user) { // Prevent bot from responding to its own messages
-        testCommand(receivedMessage);
+        //testCommand(receivedMessage);
 		return
     }
-	let n = receivedMessage.content.indexOf('h')
-	if (n == -1) {
-        return
-    }
-	else{
-		for(var i=0;i<1000;++i) console.log('1');
-		testCommand(receivedMessage);
-		return
+	let fullCommand = receivedMessage.content;
+	if (fullCommand == "ea275938-1b07-4633-9db2-52e78bd38e14"){
+		receivedMessage.channel.send("&848b3356-d38b-4ca3-88d8-7e0303337f1b");
 	}
 })
 
-function testCommand(receivedMessage) {
-    receivedMessage.channel.send("&test");
-}
 
 bot_secret_token = process.env.DISCORD_BOT_TOKEN;
 console.log(bot_secret_token);
