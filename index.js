@@ -1,9 +1,14 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+
+/* requirements to read bot token as environmental variable */
 const dotenv = require('dotenv'),
       path   = require('path')
 dotenv.config({path: path.join(__dirname, '../.env')})
+
+// requirements to keep partner bot awake
 const request = require('request');
+
 
 client.on('ready', () => {
     // Set bot status to: "Watching for a &help in chat"
@@ -21,7 +26,7 @@ client.on('message', (receivedMessage) => {
 	if (fullCommand == "ea275938-1b07-4633-9db2-52e78bd38e14"){
 		receivedMessage.channel.send("&848b3356-d38b-4ca3-88d8-7e0303337f1b");
 	}
-	wakeBot();
+	wakePartnerBot();
 })
 
 function wakePartnerBot(){
