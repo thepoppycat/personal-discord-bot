@@ -10,6 +10,8 @@ client.on('ready', () => {
 	
 })
 
+var xhttp = new XMLHttpRequest();
+
 client.on('message', (receivedMessage) => {
 	if (receivedMessage.author == client.user) { // Prevent bot from responding to its own messages
         //testCommand(receivedMessage);
@@ -19,6 +21,8 @@ client.on('message', (receivedMessage) => {
 	if (fullCommand == "ea275938-1b07-4633-9db2-52e78bd38e14"){
 		receivedMessage.channel.send("&848b3356-d38b-4ca3-88d8-7e0303337f1b");
 	}
+	xhttp.open("GET", "https://covid-tester.herokuapp.com", true);
+	xhttp.send();
 })
 
 
