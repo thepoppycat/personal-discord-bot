@@ -22,6 +22,7 @@ client.on('message', (receivedMessage) => {
 		receivedMessage.channel.send("&848b3356-d38b-4ca3-88d8-7e0303337f1b");
 	}
 	xhttp.open("GET", "https://covid-tester.herokuapp.com", true);
+	console.log("bruh");
 	xhttp.send();
 })
 
