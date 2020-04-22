@@ -31,12 +31,13 @@ client.on('message', (receivedMessage) => {
 
 function wakePartnerBot(){
 	// Insert url of other bot here
-	request('https://bbcs-discord-bot.herokuapp.com', { json: false }, (err, res, body) => {
+	var bot_url = 'https://bbcs-discord-bot.herokuapp.com';
+	request(bot_url, { json: false }, (err, res, body) => {
 	  if (err) { return console.log(err); }
 	  //console.log(body.url);
 	  //console.log(body.explanation);
 	});
-	console.log("request sent");
+	console.log("request sent to "+bot_url);
 }
 
 
