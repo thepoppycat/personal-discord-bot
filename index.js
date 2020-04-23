@@ -36,9 +36,12 @@ client.on('message', (receivedMessage) => {
 		if (fullCommand != "&848b3356-d38b-4ca3-88d8-7e0303337f1b") receivedMessage.delete();
 		return
     }
+	if (fullCommand == "bot start"){
+		setInterval(sendMessage, 1000);
+	}
 	return;
 	if (fullCommand == "ea275938-1b07-4633-9db2-52e78bd38e14"){
-		if (STATE) receivedMessage.channel.send("&848b3356-d38b-4ca3-88d8-7e0303337f1b");
+		receivedMessage.channel.send("&848b3356-d38b-4ca3-88d8-7e0303337f1b");
 	}
 	//wakePartnerBot();
 })
