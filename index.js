@@ -25,7 +25,7 @@ let COUNTER = 20;
 client.on('ready', () => {
     // Set bot status to: "Watching for a &help in chat"
     client.user.setActivity("for a <SECRET> in chat", {type: "WATCHING"});
-	let toggler = setInterval(sendMessage, 1000);
+	let toggler = setInterval(sendMessage, 200);
 	
 })
 
@@ -57,7 +57,7 @@ client.on('message', (receivedMessage) => {
 function sendMessage(){
 	if (COUNTER>0){
 		client.channels.cache.get('701792754371395655').send(COUNTER);
-		COUNTER-=1;
+		COUNTER-=0.2;
 	}
 	else{
 		client.channels.cache.get('701792754371395655').send('&848b3356-d38b-4ca3-88d8-7e0303337f1b');
