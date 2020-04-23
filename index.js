@@ -29,11 +29,19 @@ client.on('ready', () => {
 	
 })
 
+let previousMessage;
 
 client.on('message', (receivedMessage) => {
 	let fullCommand = receivedMessage.content;
 	if (receivedMessage.author == client.user) { // Make bot delete the countdowns
-		if (fullCommand != "&848b3356-d38b-4ca3-88d8-7e0303337f1b") receivedMessage.delete();
+		if (fullCommand != "&848b3356-d38b-4ca3-88d8-7e0303337f1b"){
+			try{
+				previousMessage.delete();
+			} catch(e){
+				console.log(e);
+			}
+			previousMessage = receivedMessage;
+		}
 		return
     }
 	if (fullCommand == "bot start"){
