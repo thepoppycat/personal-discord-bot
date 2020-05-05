@@ -32,7 +32,7 @@ client.on('ready', () => {
 let previousMessage;
 let arr = [];
 for(var i=1;i<=20;++i) arr.push(i.toString());
-let ALLOWEDCHANNELS = ['707247793424695306', '707123616315342858'];
+let ALLOWEDCHANNELS = [];
 
 
 
