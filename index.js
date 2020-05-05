@@ -9,7 +9,6 @@ dotenv.config({path: path.join(__dirname, '../.env')})
 // requirements to keep partner bot awake
 const request = require('request');
 
-
 bot_secret_token = process.env.DISCORD_BOT_TOKEN;
 console.log(bot_secret_token);
 var http = require('http');
@@ -29,10 +28,13 @@ client.on('ready', () => {
 	
 })
 
+
 let previousMessage;
 let arr = [];
 for(var i=1;i<=20;++i) arr.push(i.toString());
-console.log(arr[2]);
+let allowedChannels = ['707247793424695306', '707123616315342858'];
+
+
 
 client.on('message', (receivedMessage) => {
 	let fullCommand = receivedMessage.content;
@@ -51,7 +53,7 @@ client.on('message', (receivedMessage) => {
 		setInterval(sendMessage, 1000);
 		return
 	}
-	if (receivedMessage.channel.id=="707123616315342858"){
+	if (allowedChannels.indexOf(receivedMessage.channel.id)>-1){
 		receivedMessage.channel.send(receivedMessage.author.username+" said "+fullCommand, {
 			tts: true
 		});
