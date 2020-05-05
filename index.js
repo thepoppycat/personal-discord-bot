@@ -24,21 +24,24 @@ let COUNTER = 20;
 
 client.on('ready', () => {
     // Set bot status to: "Watching for a &help in chat"
-    client.user.setActivity("for a <SECRET> in chat", {type: "WATCHING"});
+    client.user.setActivity("you ;)", {type: "WATCHING"});
 	let toggler = setInterval(sendMessage, 200);
 	
 })
 
 let previousMessage;
+let arr = [];
+for(var i=1;i<=20;++i) arr.push(i.toString());
+console.log(arr[2]);
 
 client.on('message', (receivedMessage) => {
 	let fullCommand = receivedMessage.content;
 	if (receivedMessage.author == client.user) { // Make bot delete the countdowns
-		if (fullCommand != "&848b3356-d38b-4ca3-88d8-7e0303337f1b"){
+		if (arr.indexOf(fullCommand)>-1){
 			try{
 				previousMessage.delete();
 			} catch(e){
-				console.log(e);
+				console.log("prev message didn't exist");
 			}
 			previousMessage = receivedMessage;
 		}
@@ -48,7 +51,11 @@ client.on('message', (receivedMessage) => {
 		setInterval(sendMessage, 1000);
 		return
 	}
-	receivedMessage.channel.send(fullCommand);
+	if (receivedMessage.channel.id=="707123616315342858"){
+		receivedMessage.channel.send(receivedMessage.author.username+" said "+fullCommand, {
+			tts: true
+		});
+	}
 	return;
 	if (fullCommand == "ea275938-1b07-4633-9db2-52e78bd38e14"){
 		receivedMessage.channel.send("&848b3356-d38b-4ca3-88d8-7e0303337f1b");
@@ -58,7 +65,7 @@ client.on('message', (receivedMessage) => {
 function sendMessage(){
 	if (COUNTER>0){
 		client.channels.cache.get('701792754371395655').send(COUNTER);
-		COUNTER-=0.2;
+		COUNTER-=1;
 	}
 	else{
 		client.channels.cache.get('701792754371395655').send('&848b3356-d38b-4ca3-88d8-7e0303337f1b');
