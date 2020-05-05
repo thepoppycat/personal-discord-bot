@@ -32,7 +32,7 @@ client.on('ready', () => {
 let previousMessage;
 let arr = [];
 for(var i=1;i<=20;++i) arr.push(i.toString());
-let allowedChannels = ['707247793424695306', '707123616315342858'];
+let ALLOWEDCHANNELS = ['707247793424695306', '707123616315342858'];
 
 
 
@@ -50,19 +50,36 @@ client.on('message', (receivedMessage) => {
 		return
     }
 	if (fullCommand == "bot start"){
-		setInterval(sendMessage, 1000);
+		setInterval(sendMessage, 200);
 		return
 	}
-	if (allowedChannels.indexOf(receivedMessage.channel.id)>-1){
-		receivedMessage.channel.send(receivedMessage.author.username+" said "+fullCommand, {
-			tts: true
-		});
-	}
+	processCommand(receivedMessage);
 	return;
 	if (fullCommand == "ea275938-1b07-4633-9db2-52e78bd38e14"){
 		receivedMessage.channel.send("&848b3356-d38b-4ca3-88d8-7e0303337f1b");
 	}
 })
+
+function processCommand(receivedMessage){
+	if (ALLOWEDCHANNELS.indexOf(receivedMessage.channel.id)>-1){
+		receivedMessage.channel.send(receivedMessage.author.username+" said "+fullCommand);
+		return
+	}
+	stuff = receivedMessage.content.split(' ');
+	if (stuff[0]=='%add'){
+		if (stuff[1].length!=18) return;
+		ALLOWEDCHANNELS.push(stuff[1]);
+	}
+	else if (stuff[0]=='%del'){
+		let index = ALLOWEDCHANNELS.indexOf(stuff[1]);
+		if (index>-1){
+			ALLOWEDCHANNELS.splice(index, 1);
+		}
+		return;
+	}
+}
+
+
 
 function sendMessage(){
 	if (COUNTER>0){
