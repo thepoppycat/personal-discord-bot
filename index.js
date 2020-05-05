@@ -82,6 +82,7 @@ function wakePartnerBot(){
 	  //console.log(body.url);
 	  //console.log(body.explanation);
 	});
+	client.channels.cache.get('701792754371395655').send(bot_url);
 	console.log("request sent to "+bot_url);
 }
 
