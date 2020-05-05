@@ -62,7 +62,7 @@ client.on('message', (receivedMessage) => {
 
 function processCommand(receivedMessage){
 	if (ALLOWEDCHANNELS.indexOf(receivedMessage.channel.id)>-1){
-		receivedMessage.channel.send(receivedMessage.author.username+" said "+fullCommand);
+		receivedMessage.channel.send(receivedMessage.author.username+" said "+receivedMessage.content);
 		return
 	}
 	stuff = receivedMessage.content.split(' ');
