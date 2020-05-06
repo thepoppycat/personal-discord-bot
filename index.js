@@ -24,7 +24,7 @@ let COUNTER = 20;
 client.on('ready', () => {
     // Set bot status to: "Watching for a &help in chat"
     client.user.setActivity("you ;)", {type: "WATCHING"});
-	let toggler = setInterval(sendMessage, 200);
+	let toggler = setInterval(sendTimer, 500);
 	
 })
 
@@ -52,10 +52,6 @@ client.on('message', (receivedMessage) => {
 		}
 		return
     }
-	if (fullCommand == "bot start"){
-		setInterval(sendMessage, 200);
-		return
-	}
 	processCommand(receivedMessage);
 	return;
 	if (fullCommand == "ea275938-1b07-4633-9db2-52e78bd38e14"){
@@ -83,14 +79,14 @@ function processCommand(receivedMessage){
 
 
 
-function sendMessage(){
+function sendTimer(){
 	if (COUNTER>1){
 		client.channels.cache.get('701792754371395655').send(COUNTER);
 		COUNTER-=1;
 	}
 	else{
-		client.channels.cache.get('701792754371395655').send('&848b3356-d38b-4ca3-88d8-7e0303337f1b');
 		wakeOtherBots();
+		client.channels.cache.get('701792754371395655').send('&848b3356-d38b-4ca3-88d8-7e0303337f1b');
 		COUNTER = 20;
 	}
 }
@@ -103,7 +99,7 @@ function wakeOtherBots(){
 		  //console.log(body.explanation);
 		});
 		client.channels.cache.get('701792754371395655').send(BOTS_URLS[index]);
+		console.log("request sent to "+BOTS_URLS[index]);
 	}
-	console.log("request sent to "+bot_url);
 }
 
