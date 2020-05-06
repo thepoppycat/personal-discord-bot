@@ -72,7 +72,7 @@ function processCommand(receivedMessage){
 				ACTIVECHANNELS.push(stuff[1]);
 				receivedMessage.channel.send(`Added `+stuff[1]+` to list of active channels.`);
 			}
-			else if (stuff[1].contains(`http`)){
+			else if (stuff[1].includes(`http`)){
 				BOTS_URLS.push(stuff[1]);
 				receivedMessage.channel.send(`Added `+stuff[1]+` to list of active bots.`);
 			}
