@@ -96,7 +96,8 @@ function processCommand(receivedMessage){
 			}
 		}
 		else{
-			receivedMessage.channel.send(`I don't understand, try "help"`);
+			receivedMessage.channel.send(`I currently can only to intepret the following:\n\t"add"\n\t"del"\n\nRemember to use a "%" as a prefix.`);
+		}
 	}
 }
 
@@ -125,4 +126,3 @@ function wakeOtherBots(){
 		console.log(`request sent to `+BOTS_URLS[index]);
 	}
 }
-
