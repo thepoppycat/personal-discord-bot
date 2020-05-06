@@ -64,7 +64,7 @@ function processCommand(receivedMessage){
 		receivedMessage.channel.send(receivedMessage.author.username+" said "+receivedMessage.content);
 	}
 	fullCommand = receivedMessage.content;
-	if fullCommand.startsWith('%'){
+	if (fullCommand.startsWith('%')){
 		items = fullCommand.slice(1).split(' ');
 	
 		if (stuff[0]=='%add'){
