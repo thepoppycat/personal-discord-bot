@@ -32,7 +32,8 @@ client.on('ready', () => {
 let previousMessage;
 let arr = [];
 for(var i=1;i<=20;++i) arr.push(i.toString());
-let ALLOWEDCHANNELS = [];
+let ACTIVECHANNELS = [];
+let TTS = [];
 
 
 
@@ -61,22 +62,22 @@ client.on('message', (receivedMessage) => {
 })
 
 function processCommand(receivedMessage){
-	if (ALLOWEDCHANNELS.indexOf(receivedMessage.channel.id)>-1){
+	if (ACTIVECHANNELS.indexOf(receivedMessage.channel.id)>-1){
 		receivedMessage.channel.send(receivedMessage.author.username+" said "+receivedMessage.content);
-		return
 	}
 	stuff = receivedMessage.content.split(' ');
 	if (stuff[0]=='%add'){
-		if (stuff[1].length!=18) return;
-		ALLOWEDCHANNELS.push(stuff[1]);
+		if (stuff[1].length!=18 || isNaN(stuff[1])) return;
+		ACTIVECHANNELS.push(stuff[1]);
 	}
 	else if (stuff[0]=='%del'){
-		let index = ALLOWEDCHANNELS.indexOf(stuff[1]);
+		let index = ACTIVECHANNELS.indexOf(stuff[1]);
 		if (index>-1){
-			ALLOWEDCHANNELS.splice(index, 1);
+			ACTIVECHANNELS.splice(index, 1);
 		}
 		return;
 	}
+}
 }
 
 
