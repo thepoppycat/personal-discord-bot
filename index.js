@@ -78,21 +78,18 @@ function processCommand(receivedMessage){
 			}
 		}
 		else if (stuff[0]==`del`){
-			let index = ACTIVECHANNELS.indexOf(stuff[1]);
-			if (index>-1){
+			let indexChannel = ACTIVECHANNELS.indexOf(stuff[1]); 
+			let indexBot = BOTS_URLS.indexOf(stuff[1]);
+			if (indexChannel>-1){
 				ACTIVECHANNELS.splice(index, 1);
 				receivedMessage.channel.send(`Removed `+stuff[1]+` from list of active channels.`);
 			}
-			else{
-				receivedMessage.channel.send(stuff[1]+` is not an active channel.`);
-			}
-			index = BOTS_URLS.indexOf(stuff[1]);
-			if (index>-1){
+			else if (indexBot>-1){
 				BOTS_URLS.splice(index, 1);
 				receivedMessage.channel.send(`Removed `+stuff[1]+` from list of active bots.`);
 			}
 			else{
-				receivedMessage.channel.send(stuff[1]+` is not an active bot.`);
+				receivedMessage.channel.send(stuff[1]+` is not an active channel or bot.`);
 			}
 		}
 		else{
