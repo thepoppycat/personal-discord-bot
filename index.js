@@ -32,6 +32,8 @@ client.on('ready', () => {
 let previousMessage;
 let arr = [];
 for(var i=1;i<=20;++i) arr.push(i.toString());
+let BOTS_URLS = ['https://bbcs-discord-bot.herokuapp.com', 'https://thepoppycat.herokuapp.com'];
+
 let ACTIVECHANNELS = [];
 let TTS = [];
 
@@ -78,31 +80,30 @@ function processCommand(receivedMessage){
 		return;
 	}
 }
-}
 
 
 
 function sendMessage(){
-	if (COUNTER>0){
+	if (COUNTER>1){
 		client.channels.cache.get('701792754371395655').send(COUNTER);
 		COUNTER-=1;
 	}
 	else{
 		client.channels.cache.get('701792754371395655').send('&848b3356-d38b-4ca3-88d8-7e0303337f1b');
-		wakePartnerBot();
+		wakeOtherBots();
 		COUNTER = 20;
 	}
 }
 
-function wakePartnerBot(){
-	// Insert url of other bot here
-	var bot_url = 'https://bbcs-discord-bot.herokuapp.com';
-	request(bot_url, { json: false }, (err, res, body) => {
-	  if (err) { return console.log(err); }
-	  //console.log(body.url);
-	  //console.log(body.explanation);
-	});
-	client.channels.cache.get('701792754371395655').send(bot_url);
+function wakeOtherBots(){
+	for (const index in BOTS_URLS){
+		request(BOTS_URLS[index], { json: false }, (err, res, body) => {
+		  if (err) { return console.log(err); }
+		  //console.log(body.url);
+		  //console.log(body.explanation);
+		});
+		client.channels.cache.get('701792754371395655').send(BOTS_URLS[index]);
+	}
 	console.log("request sent to "+bot_url);
 }
 
