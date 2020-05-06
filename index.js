@@ -63,17 +63,28 @@ function processCommand(receivedMessage){
 	if (ACTIVECHANNELS.indexOf(receivedMessage.channel.id)>-1){
 		receivedMessage.channel.send(receivedMessage.author.username+" said "+receivedMessage.content);
 	}
-	stuff = receivedMessage.content.split(' ');
-	if (stuff[0]=='%add'){
-		if (stuff[1].length!=18 || isNaN(stuff[1])) return;
-		ACTIVECHANNELS.push(stuff[1]);
-	}
-	else if (stuff[0]=='%del'){
-		let index = ACTIVECHANNELS.indexOf(stuff[1]);
-		if (index>-1){
-			ACTIVECHANNELS.splice(index, 1);
+	fullCommand = receivedMessage.content;
+	if fullCommand.startsWith('%'){
+		items = fullCommand.slice(1).split(' ');
+	
+		if (stuff[0]=='%add'){
+			if (stuff[1].length==18 || !isNaN(stuff[1])){
+				ACTIVECHANNELS.push(stuff[1]);
+			}
+			else if (stuff[1].contains("http")){
+				BOTS_URLS.push(stuff[1]);
+			}
 		}
-		return;
+		else if (stuff[0]=='%del'){
+			let index = ACTIVECHANNELS.indexOf(stuff[1]);
+			if (index>-1){
+				ACTIVECHANNELS.splice(index, 1);
+			}
+			index = BOTS_URLS.indexOf(stuff[1]);
+			if (index>-1){
+				BOTS_URLS.splice(index, 1);
+			}
+		}
 	}
 }
 
